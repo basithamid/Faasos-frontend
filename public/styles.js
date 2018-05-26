@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');\n/* You can add global styles to this file, and also import other style files */"
+module.exports = "\r\n@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');\n/* You can add global styles to this file, and also import other style files */"
 
 /***/ }),
 
@@ -539,7 +539,7 @@ if(false) {}
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Faasos_asgn\Client\src\styles.css */"./src/styles.css");
+module.exports = __webpack_require__(/*! D:\Faasos\Client\src\styles.css */"./src/styles.css");
 
 
 /***/ })

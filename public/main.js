@@ -41,7 +41,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-navbar></app-navbar>\n"
+module.exports = "<app-navbar></app-navbar>\r\n"
 
 /***/ }),
 
@@ -120,6 +120,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 
 
 
+// import { WebSocketService } from './services/wsService/web-socket.service';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -174,7 +175,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-3\">\n  </div>\n  <div class=\"col-md-6\">\n    <legend>Report</legend>\n    <table id=\"export_table\" class=\"table table-striped table-bordered\">\n      <tbody>\n        <tr>\n          <th>Name</th>\n          <th>Quantity</th>\n          <th>Created till now</th>\n          <th>Predicted</th>\n          <th>Status</th>\n        </tr>\n        <tr *ngFor=\"let order of orders\">\n          <td>{{ order.name }}</td>\n          <td>{{ order.quantity }}</td>\n          <td>{{ order.createdTillNow }}</td>\n          <td>{{ order.predicted }}</td>\n          <td>\n            <button class=\"btn btn-primary\" \n            (click)=\"updateOrder(order)\">DONE\n            </button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n    <button class=\"btn btn-warning\"(click)=\"generateReport()\">Download Report</button>      \n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-3\">\r\n  </div>\r\n  <div class=\"col-md-6\">\r\n    <legend>Report</legend>\r\n    <table id=\"export_table\" class=\"table table-striped table-bordered\">\r\n      <tbody>\r\n        <tr>\r\n          <th>Name</th>\r\n          <th>Quantity</th>\r\n          <th>Created till now</th>\r\n          <th>Predicted</th>\r\n          <th>Status</th>\r\n        </tr>\r\n        <tr *ngFor=\"let order of orders\">\r\n          <td>{{ order.name }}</td>\r\n          <td>{{ order.quantity }}</td>\r\n          <td>{{ order.createdTillNow }}</td>\r\n          <td>{{ order.predicted }}</td>\r\n          <td>\r\n            <button class=\"btn btn-primary\" \r\n            (click)=\"updateOrder(order)\">DONE\r\n            </button>\r\n          </td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n    <button class=\"btn btn-warning\"(click)=\"generateReport()\">Download Report</button>      \r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -216,13 +217,11 @@ var DisplayTableComponent = /** @class */ (function () {
     };
     DisplayTableComponent.prototype.updateOrder = function (order) {
         var _this = this;
+        console.log('order:', order);
         this._dbService.updateOrder(order)
             .subscribe(function (res) { return _this.orders = res.message.data; }, function (error) { return console.log(error); });
         this._dbService.getOrdersData()
-            .subscribe(function (res) {
-            _this.orders = res.message.data;
-            console.log('orders: ', _this.orders);
-        }, function (error) { return console.log(error); });
+            .subscribe(function (res) { return _this.orders = res.message.data; }, function (error) { return console.log(error); });
     };
     DisplayTableComponent.prototype.generateReport = function () {
         new angular2_csv_Angular2_csv__WEBPACK_IMPORTED_MODULE_2__["Angular2Csv"](this.orders, 'My Report');
@@ -360,7 +359,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-3\"></div>\n  <div class=\"col-md-6\">\n    <legend>Add Order</legend>\n    <form #orderForm=\"ngForm\" [formGroup]=\"order\" (ngSubmit)=\"submitOrder(orderForm.value); orderForm.reset()\">\n      <div class=\"form-group\">\n        <label for=\"name\">Name:</label>\n        <select name=\"dishes\" class=\"form-control\" (change)=\"selectChange($event)\">\n          <option value=\"\" selected=\"selected\" disabled>Please select dish</option>\n          <option *ngFor=\"let dish of dishes\" [value]=\"dish.name\">{{ dish.name }}</option>\n        </select>  \n      </div>\n      <div class=\"form-group\">\n        <label for=\"quantity\">Quantity:</label>\n        <input type=\"number\" class=\"form-control\" formControlName=\"quantity\" required>\n      </div>\n      <div class=\"form\">\n        <button [disabled]= !orderForm.valid class=\"btn btn-success\">Submit</button>\n      </div>\n    </form>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-3\"></div>\r\n  <div class=\"col-md-6\">\r\n    <legend>Add Order</legend>\r\n    <form #orderForm=\"ngForm\" [formGroup]=\"order\" (ngSubmit)=\"submitOrder(orderForm.value)\">\r\n      <div class=\"form-group\">\r\n        <label for=\"name\">Name:</label>\r\n        <select name=\"dishes\" class=\"form-control\" (change)=\"selectChange($event)\">\r\n          <option value=\"\" selected=\"selected\" disabled>Please select dish</option>\r\n          <option *ngFor=\"let dish of dishes\" [value]=\"dish.name\">{{ dish.name }}</option>\r\n        </select>  \r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"quantity\">Quantity:</label>\r\n        <input type=\"number\" class=\"form-control\" formControlName=\"quantity\">\r\n      </div>\r\n      <div class=\"form\">\r\n        <button class=\"btn btn-success\">Submit</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -453,7 +452,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var DatabaseService = /** @class */ (function () {
     function DatabaseService(_http) {
         this._http = _http;
-        this._url = 'http://localhost:8000';
+        this._url = 'https://faasos-server.herokuapp.com/';
         this.dishes = ['a', 'b', 'c'];
     }
     DatabaseService.prototype.getDishNames = function () {
@@ -502,7 +501,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col-md-3\"></div>\n  <div class=\"col-md-6\">\n    <legend>Predict Quantities</legend>\n    <form #predictForm=\"ngForm\" [formGroup]=\"orderPrediction\" (ngSubmit)=\"makePrediction(predictForm.value); predictForm.reset()\">\n      <div class=\"form-group\">\n        <label for=\"name\">Name:</label>\n        <select name=\"dishes\" class=\"form-control\" (change)=\"selectChange($event)\">\n          <option value=\"\" selected=\"selected\" disabled>Please select dish</option>\n          <option *ngFor=\"let dish of dishes\" [value]=\"dish.name\">{{ dish.name }}</option>\n        </select>  \n      </div>\n      <div class=\"form-group\">\n        <label for=\"quantity\">Quantity:</label>\n        <input type=\"number\" class=\"form-control\" formControlName=\"quantity\" required>\n      </div>\n      <div class=\"form\">\n        <button [disabled]= !predictForm.valid class=\"btn btn-success\">Submit</button>\n      </div>\n    </form>\n  </div>\n</div>\n  "
+module.exports = "<div class=\"row\">\r\n  <div class=\"col-md-3\"></div>\r\n  <div class=\"col-md-6\">\r\n    <legend>Predict Quantities</legend>\r\n    <form #predictForm=\"ngForm\" [formGroup]=\"orderPrediction\" (ngSubmit)=\"makePrediction(predictForm.value)\">\r\n      <div class=\"form-group\">\r\n        <label for=\"name\">Name:</label>\r\n        <select name=\"dishes\" class=\"form-control\" (change)=\"selectChange($event)\">\r\n          <option value=\"\" selected=\"selected\" disabled>Please select dish</option>\r\n          <option *ngFor=\"let dish of dishes\" [value]=\"dish.name\">{{ dish.name }}</option>\r\n        </select>  \r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"quantity\">Quantity:</label>\r\n        <input type=\"number\" class=\"form-control\" formControlName=\"quantity\">\r\n      </div>\r\n      <div class=\"form\">\r\n        <button class=\"btn btn-success\">Submit</button>\r\n      </div>\r\n    </form>\r\n  </div>\r\n</div>\r\n  "
 
 /***/ }),
 
@@ -629,7 +628,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! D:\Faasos_asgn\Client\src\main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! D:\Faasos\Client\src\main.ts */"./src/main.ts");
 
 
 /***/ })
